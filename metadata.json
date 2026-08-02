@@ -1,0 +1,6 @@
+{
+  "name": "RGB Pixel Sheet Converter",
+  "description": "Extract RGB pixel values from images into Google Sheets with R, G, B tabs and reconstruct images from Google Sheets.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
