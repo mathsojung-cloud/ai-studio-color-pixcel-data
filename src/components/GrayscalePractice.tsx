@@ -76,6 +76,7 @@ export const GrayscalePractice: React.FC<GrayscalePracticeProps> = ({
     const updated = handleGenerateGrayData();
     if (updated) {
       exportToExcel(updated, updated.fileName || 'pixel_rgb_gray_sheets.xlsx');
+      setNoticeMsg('📥 엑셀 파일 다운로드가 시작되었습니다!\n• iOS(아이폰): Safari 주소창 옆 [↓] 아이콘 또는 [파일 앱 → 다운로드] 폴더를 확인하세요.\n• Android(갤럭시): 상단 알림창 또는 [내 파일 → 다운로드] 폴더에 저장됩니다.');
     }
   };
 
@@ -234,7 +235,7 @@ export const GrayscalePractice: React.FC<GrayscalePracticeProps> = ({
             <h4 className="font-semibold text-white text-sm">Gray 시트 자동 계산 및 엑셀 내보내기</h4>
 
             {noticeMsg && (
-              <div className="bg-indigo-950/80 border border-indigo-500/50 p-3.5 rounded-xl text-xs text-indigo-200 flex items-start gap-2.5">
+              <div className="bg-indigo-950/80 border border-indigo-500/50 p-3.5 rounded-xl text-xs text-indigo-200 flex items-start gap-2.5 whitespace-pre-line leading-relaxed">
                 <Sparkles className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
                 <span>{noticeMsg}</span>
               </div>
@@ -253,6 +254,15 @@ export const GrayscalePractice: React.FC<GrayscalePracticeProps> = ({
               <p className="text-xs text-slate-400 leading-relaxed px-1">
                 * 위 버튼을 누르면 설정한 수식으로 <strong>Gray 시트가 자동 계산되어 추가</strong>된 엑셀 파일이 즉시 다운로드됩니다.
               </p>
+            </div>
+
+            {/* Mobile download guidance box */}
+            <div className="p-3.5 bg-slate-900/80 rounded-xl border border-slate-700/80 text-xs text-slate-300 space-y-1.5">
+              <p className="text-indigo-300 font-semibold flex items-center gap-1.5">
+                📱 모바일 파일 저장 위치 안내:
+              </p>
+              <p>• <strong>iPhone/iPad (Safari)</strong>: 주소창 옆 <strong>[↓ 다운로드]</strong> 아이콘 또는 기본 <strong>[파일 앱] → [다운로드]</strong> 폴더</p>
+              <p>• <strong>Android (갤럭시 등 Chrome)</strong>: 상단 알림창 또는 기본 <strong>[내 파일] / [파일] 앱 → [다운로드]</strong> 폴더</p>
             </div>
           </div>
 

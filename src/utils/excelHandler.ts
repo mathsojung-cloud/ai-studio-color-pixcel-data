@@ -22,8 +22,22 @@ export function exportToExcel(
   if (sheets.B) appendMatrixSheet('B', sheets.B);
   if (sheets.Gray) appendMatrixSheet('Gray', sheets.Gray);
 
-  // Trigger download
-  XLSX.writeFile(workbook, filename);
+  // Trigger download with Blob & <a> tag fallback for best mobile/tablet compatibility
+  try {
+    const wbout = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    const blob = new Blob([wbout], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+  } catch (err) {
+    // Fallback to standard XLSX writeFile if Blob fails
+    XLSX.writeFile(workbook, filename);
+  }
 }
 
 /**

@@ -145,9 +145,19 @@ export const ReconstructionView: React.FC<ReconstructionViewProps> = ({
             type="file"
             ref={fileInputRef}
             onChange={handleFileUpload}
-            accept=".xlsx, .xls, .csv"
+            accept=".xlsx, .xls, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, text/csv"
             className="hidden"
           />
+        </div>
+
+        {/* Mobile File Selection Guide */}
+        <div className="p-3 bg-slate-900/70 rounded-lg border border-slate-700/60 text-xs text-slate-300 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div className="flex items-center gap-1.5 text-indigo-300 font-semibold">
+            📱 모바일 기기 이용 안내:
+          </div>
+          <p className="text-slate-300">
+            [파일 불러오기] 클릭 시 사진 보관함 대신 <strong>'파일 선택(Files)'</strong>을 누르고 <strong>[다운로드]</strong> 폴더를 선택하세요. (카카오톡 등 인앱 브라우저는 Safari/Chrome으로 열기 권장)
+          </p>
         </div>
 
         {/* Sheet Inspection Badges */}
